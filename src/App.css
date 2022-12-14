@@ -1,0 +1,207 @@
+/* ================================== */
+      /* Padronização */
+/* ================================== */
+body {
+background: 
+linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+background-color: #131313;
+background-size: 20px 20px;
+margin: 0;
+padding: 0;
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+
+
+:root{
+  --corPrincipal: rgb(25, 25, 88);
+  --fonteBotaoActive: rgb(184, 184, 184);
+}
+
+/* ================================== */
+
+
+.myHeader{
+  display: flex;
+  align-items: center;
+  background-color:   var(--corPrincipal);
+  background: linear-gradient(blue, --corPrincipal);
+  color: white;
+  height: 60px;
+  
+  border-style: solid;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-color: white;
+  border-width: 5px;
+  text-decoration: none;
+}
+
+.myHeader :nth-child(1) {
+  padding: 0;
+  font-size: 30px ;
+  color: white;
+  margin-left: 20px;
+}
+
+.myHeader h1:hover{
+  opacity: 0.5;
+}
+
+/* ==================================================================================== */
+        /* Menu usuários */
+/* ==================================================================================== */
+#menu-usuarios{
+  border-radius: 10px;
+  background-color: white;
+  width: 700px;
+  height: auto;
+  margin: auto;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.botao{
+  border: none;
+  background-color: var(--corPrincipal);
+  color: white;
+  height: 30px;
+  width: 135px;
+  font-size: 13px;
+  border-radius: 5px;
+  margin: 10px;
+
+}
+
+.botao:hover {
+  cursor: pointer;
+  background-color:rgb(24, 24, 160);
+}
+
+.botao:active {
+  background-color: #131313;
+  color: var(--fonteBotaoActive);
+  height: 27px;
+  width:130px ;
+  margin: 11.5px;
+  font-size: 11.8px;
+}
+
+
+/* #fundo-menu{
+  width: 100%;
+  height: 500%;
+  position: fixed;
+  background-color: white;
+  opacity: 0.5;
+  margin-top:-190px;
+  z-index: 0;
+}
+ */
+
+
+/* Botões =====================================================*/
+/* .botoes-menu{
+  display: flex;
+}
+
+#botao-salvar{
+  border: none;
+  color: white;
+  height: 30px;
+  width: 135px;
+  font-size: 13px;
+  border-radius: 5px;
+  margin: 10px;
+  background-color: green;
+}
+
+#botao-salvar:hover{
+  background-color: rgb(2, 160, 2);
+  cursor: pointer;
+}
+
+#botao-salvar:active{
+  background-color: rgb(15, 85, 15);
+  color: var(--fonteBotaoActive);
+}
+
+#botao-cancelar{
+  border: none;
+  color: white;
+  height: 30px;
+  width: 135px;
+  font-size: 13px;
+  border-radius: 5px;
+  margin: 10px;
+  background-color: rgb(121, 0, 0);
+}
+
+#botao-cancelar:hover{
+  background-color: rgb(182, 0, 0);
+  cursor: pointer;
+}
+
+#botao-cancelar:active{
+  background-color: rgb(95, 0, 0);
+  color: var(--fonteBotaoActive);
+} */
+/* ======================================================= */
+      /* Usuários */
+/* ======================================================= */
+
+#usuario{
+  border-radius: 10px;
+  background-color: white;
+  width: 700px;
+  height: 20px;
+  margin: auto;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  margin: 30px auto;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

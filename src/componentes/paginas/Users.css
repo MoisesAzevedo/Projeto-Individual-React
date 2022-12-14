@@ -1,0 +1,25 @@
+
+  .userContainer{
+    background: linear-gradient(rgb(255, 255, 255), rgb(197, 197, 197));
+    width: 800px;
+    height: 220px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+  }
+
+  .userContainer img{
+    height: 128px;
+    border-radius: 80px;
+    margin: 35px;
+  }
+
+  .userContainer h1{
+    margin-bottom: 0;
+  }
+
+  #id-and-username{
+    display: flex;
+  }
