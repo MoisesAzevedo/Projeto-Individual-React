@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/MoisesAzevedo/Projeto-Individual-React.git/static/css/main.128982f0.css",
+    "main.js": "/MoisesAzevedo/Projeto-Individual-React.git/static/js/main.b6695a43.js",
+    "index.html": "/MoisesAzevedo/Projeto-Individual-React.git/index.html",
+    "main.128982f0.css.map": "/MoisesAzevedo/Projeto-Individual-React.git/static/css/main.128982f0.css.map",
+    "main.b6695a43.js.map": "/MoisesAzevedo/Projeto-Individual-React.git/static/js/main.b6695a43.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.128982f0.css",
+    "static/js/main.b6695a43.js"
+  ]
+}
