@@ -20,6 +20,24 @@
     margin-bottom: 0;
   }
 
+  .info{
+    width: 300px;
+  }
+
   #id-and-username{
     display: flex;
   }
+
+  #pagar{
+    left: 84px;
+    position: relative;
+  }
+
+/*   #btn-pag{
+    position: relative;
+    left: 98px;
+    height: 34px;
+    width: 142px;
+    border-radius: 8px;
+    border: none;
+  } */
