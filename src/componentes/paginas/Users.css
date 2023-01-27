@@ -1,43 +1,116 @@
+.userContainer {
+  background: linear-gradient(rgb(255, 255, 255), rgb(197, 197, 197));
+  width: 800px;
+  height: 220px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+}
 
-  .userContainer{
-    background: linear-gradient(rgb(255, 255, 255), rgb(197, 197, 197));
-    width: 800px;
-    height: 220px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-self: center;
-  }
+.userContainer img {
+  height: 128px;
+  border-radius: 80px;
+  margin: 35px;
+}
 
-  .userContainer img{
-    height: 128px;
-    border-radius: 80px;
-    margin: 35px;
-  }
+.userContainer h1 {
+  margin-bottom: 0;
+}
 
-  .userContainer h1{
-    margin-bottom: 0;
-  }
+.info {
+  width: 300px;
+}
 
-  .info{
-    width: 300px;
-  }
+#id-and-username {
+  display: flex;
+}
 
-  #id-and-username{
-    display: flex;
-  }
+#pagar {
+  left: 84px;
+  position: relative;
+}
 
-  #pagar{
-    left: 84px;
-    position: relative;
-  }
+/* =======================================Modal============================ */
+/* .ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 2000ms ease-in-out;
+}
+ */
 
-/*   #btn-pag{
-    position: relative;
-    left: 98px;
-    height: 34px;
-    width: 142px;
-    border-radius: 8px;
-    border: none;
-  } */
+/* .ReactModal_Body--open {
+  background-color: #000000 !important;
+  
+} */
+
+/* .ReactModalPortal {
+  background-color: #3c3c3c !important;
+    
+} */
+
+.ReactModal__Overlay--after-open {
+  background-color: var(--corPrincipal) !important;
+  width: 480px;
+  height: 290px;
+  margin: auto;
+  border-radius: 25px;
+  box-shadow: -1px -8px 24px 1px #727272;
+}
+
+/* Header */
+.box-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-modal {
+  display: flex;
+  background-color: white;
+  width: 100%;
+  right: 0;
+  height: 55px;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.header-modal button {
+  position: absolute;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: rgb(135, 33, 33);
+  border-radius: 10px;
+  color: white;
+}
+
+.header-modal button:hover {
+  cursor: pointer;
+  background-color: rgb(162, 0, 0);
+}
+.header-modal button:focus {
+  cursor: pointer;
+  background-color: rgb(104, 22, 22);
+}
+
+.box-modal input {
+  height: 35px;
+  width: 354px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.btn-modalPag {
+  background: rgb(0, 105, 94);
+  height: 35px;
+  width: 354px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+}

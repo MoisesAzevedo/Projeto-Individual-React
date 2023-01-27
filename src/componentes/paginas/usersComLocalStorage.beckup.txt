@@ -4,6 +4,7 @@ import "./Users.css";
 import axios from "axios";
 import "/Users/Moise/OneDrive/Área de Trabalho/asd/Projeto-Individual-React/src/App.css";
 import Modal from "react-modal";
+import { json } from "react-router-dom";
 
 const Users = () => {
   /* =========================================================================================== */
@@ -11,13 +12,10 @@ const Users = () => {
   /* =========================================================================================== */
   const [modalIsOpen, setIsOpen] = useState(false); //Verifica se o modal está aberto
 
-  function openModal(usuario) {
+  function openModal() {
     //seta o modal para true
     console.log("Testando Open");
     setIsOpen(true);
-
-    var userIndice = usuario;
-    console.log(userIndice);
   }
 
   function closeModal() {
@@ -41,9 +39,30 @@ const Users = () => {
       });
   }, []);
 
+  var userArray = localStorage.getItem("userArray");
+  console.log(userArray);
+  if (userArray != null) {
+    var userArray2 = JSON.parse(userArray);
+  } else {
+    var userArray2 = [
+      {
+        nome: "moises",
+      },
+    ];
+  }
+  console.log(userArray2);
   return (
     <>
       {usuariosApi.map((usuario) => {
+        const users2 = usuario.name;
+        console.log(userArray2);
+
+        userArray2.push({
+          nome: users2,
+        });
+
+        localStorage.setItem("userArray", JSON.stringify(userArray));
+
         return (
           <div className="userContainer">
             <img src={usuario.img} alt="" />
@@ -58,7 +77,7 @@ const Users = () => {
             </div>
 
             <div id="pagar">
-              <button className="botao" onClick={openModal /* (usuario) */}>
+              <button className="botao" onClick={openModal}>
                 Pagar
               </button>
             </div>
@@ -74,9 +93,7 @@ const Users = () => {
       >
         <div className="box-modal">
           <div className="header-modal">
-            <header>
-              <h2>Pagamento para {/* {usuariosApi[userIndice].name} */}</h2>
-            </header>
+            <header> Pagamento para {/* {usuario.username} */} </header>
             <button onClick={closeModal}>✖</button>
           </div>
 
