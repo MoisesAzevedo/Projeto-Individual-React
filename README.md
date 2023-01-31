@@ -1,1 +1,1 @@
-https://moisesazevedo.github.io/Projeto-Individual-React/
+https://moisesazevedo.github.io/
