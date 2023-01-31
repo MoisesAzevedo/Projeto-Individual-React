@@ -87,7 +87,7 @@ const Users = () => {
 
           <br />
 
-          <button className="btn-modalPag">Concluir pagamento</button>
+          <button className="btn-modalPag">Finalizar pagamento</button>
         </div>
       </Modal>
     </>
