@@ -4,6 +4,7 @@ import "./Users.css";
 import axios from "axios";
 import "/Users/Moise/OneDrive/Área de Trabalho/asd/Projeto-Individual-React/src/App.css";
 import Modal from "react-modal";
+import { json } from "react-router-dom";
 
 const Users = () => {
   /* =========================================================================================== */
@@ -11,13 +12,13 @@ const Users = () => {
   /* =========================================================================================== */
   const [modalIsOpen, setIsOpen] = useState(false); //Verifica se o modal está aberto
 
-  function openModal(usuario) {
+  function openModal(i) {
+    console.log("openModal " + i);
+    localStorage.setItem("name", JSON.stringify(i));
+
     //seta o modal para true
     console.log("Testando Open");
     setIsOpen(true);
-
-    var userIndice = usuario;
-    console.log(userIndice);
   }
 
   function closeModal() {
@@ -41,9 +42,14 @@ const Users = () => {
       });
   }, []);
 
+  const nameUser0 = localStorage.getItem("name");
+  const nameUser = JSON.parse(nameUser0);
+
   return (
     <>
       {usuariosApi.map((usuario) => {
+        var indice = usuario.name;
+
         return (
           <div className="userContainer">
             <img src={usuario.img} alt="" />
@@ -58,8 +64,8 @@ const Users = () => {
             </div>
 
             <div id="pagar">
-              <button className="botao" onClick={openModal /* (usuario) */}>
-                Pagar
+              <button className="botao" onClick={() => openModal(usuario.name)}>
+                {indice}
               </button>
             </div>
           </div>
@@ -75,7 +81,7 @@ const Users = () => {
         <div className="box-modal">
           <div className="header-modal">
             <header>
-              <h2>Pagamento para {/* {usuariosApi[userIndice].name} */}</h2>
+              <h2>Pagamento para {nameUser}</h2>
             </header>
             <button onClick={closeModal}>✖</button>
           </div>
@@ -87,7 +93,7 @@ const Users = () => {
 
           <br />
 
-          <button className="btn-modalPag">Finalizar pagamento</button>
+          <button className="btn-modalPag">Concluir pagamento</button>
         </div>
       </Modal>
     </>
