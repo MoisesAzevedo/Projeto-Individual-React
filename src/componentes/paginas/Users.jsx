@@ -4,13 +4,18 @@ import "./Users.css";
 import axios from "axios";
 import "/Users/Moise/OneDrive/Área de Trabalho/asd/Projeto-Individual-React/src/App.css";
 import Modal from "react-modal";
-import { json } from "react-router-dom";
+import { NumericFormat } from "react-number-format";
+import ModalFinal from "../ModalFinal";
 
 const Users = () => {
   /* =========================================================================================== */
   //........................................ Modal
   /* =========================================================================================== */
   const [modalIsOpen, setIsOpen] = useState(false); //Verifica se o modal está aberto
+  const [validInput, setValidInput] = useState("");
+  const [requiredField, setRequiredField] = useState("");
+  const [validSelect, setValidSelect] = useState("");
+  const [modalFinal, setModalFinal] = useState(false);
 
   function openModal(i) {
     console.log("openModal " + i);
@@ -25,7 +30,47 @@ const Users = () => {
     //seta o modal para false
     setIsOpen(false);
     console.log("teste close");
+
+    setValidInput(null);
   }
+
+  function inputChange(e) {
+    setValidInput(e.target.value);
+    console.log(validInput);
+  }
+
+  function selectChange(e) {
+    setValidSelect(e.target.value);
+    console.log(validSelect);
+  }
+
+  function testModal(e) {
+    console.log("TEST MODAL");
+
+    //testando o campo NumericFormat
+    if (validInput == 0 || validInput == null) {
+      setRequiredField("Digite o valor!");
+    } else {
+      setRequiredField("");
+
+      if (validSelect != 2123) {
+        setRequiredField("Cartão inválido");
+      } else {
+        console.log(validInput);
+        setRequiredField("");
+        setValidSelect("");
+        closeModal();
+        setModalFinal(true);
+      }
+    }
+    //------------------------------
+  }
+
+  //Close modal final
+  function modalFinalClose() {
+    setModalFinal(false);
+  }
+
   /* =========================================================================================== */
 
   const [usuariosApi, setUsers] = useState([]);
@@ -48,8 +93,6 @@ const Users = () => {
   return (
     <>
       {usuariosApi.map((usuario) => {
-        var indice = usuario.name;
-
         return (
           <div className="userContainer">
             <img src={usuario.img} alt="" />
@@ -65,7 +108,7 @@ const Users = () => {
 
             <div id="pagar">
               <button className="botao" onClick={() => openModal(usuario.name)}>
-                {indice}
+                Pagar
               </button>
             </div>
           </div>
@@ -85,15 +128,45 @@ const Users = () => {
             </header>
             <button onClick={closeModal}>✖</button>
           </div>
+          <br></br>
+          <p className="requiredField">{requiredField}</p>
+
+          <NumericFormat
+            className="modal-input"
+            type="text"
+            placeholder="R$ 0,00"
+            thousandSeparator={true}
+            prefix={"R$ "}
+            inputMode="numeric"
+            value={validInput}
+            onChange={inputChange}
+          />
+          <select className="modal-select" required onChange={selectChange}>
+            <option value="Selecione" disabled selected>
+              Selecione os 04 últimos digitos do cartão
+            </option>
+            <option value="0123">Cartão com final 0123</option>
+            <option value="2123">Cartão com final 2123</option>
+          </select>
 
           <br />
 
-          <input type="text" />
-          <input type="select" />
+          <button
+            className="btn-modalPag"
+            type="submit"
+            onClick={() => testModal()}
+          >
+            Concluir pagamento
+          </button>
+        </div>
+      </Modal>
 
-          <br />
-
-          <button className="btn-modalPag">Concluir pagamento</button>
+      <Modal isOpen={modalFinal} id="modalFinal">
+        <div className="modalFinal">
+          <h2>Pagamento enviado para {nameUser}</h2>
+          <button className="btn-finalOk" onClick={modalFinalClose}>
+            Ok
+          </button>
         </div>
       </Modal>
     </>

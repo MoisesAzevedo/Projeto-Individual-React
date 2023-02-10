@@ -32,7 +32,10 @@
   position: relative;
 }
 
-/* =======================================Modal============================ */
+/* ======================================================================== */
+/* Modal */
+/* ======================================================================== */
+
 /* .ReactModal__Overlay {
   opacity: 0;
   transition: opacity 2000ms ease-in-out;
@@ -50,12 +53,11 @@
 } */
 
 .ReactModal__Overlay--after-open {
-  background-color: var(--corPrincipal) !important;
-  width: 480px;
-  height: 290px;
-  margin: auto;
-  border-radius: 25px;
-  box-shadow: -1px -8px 24px 1px #727272;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #03030375 !important;
 }
 
 /* Header */
@@ -63,7 +65,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  background-color: var(--corPrincipal) !important;
+  width: 480px;
+  height: 290px;
+  margin: auto;
+  border-radius: 25px;
+  box-shadow: -1px -8px 24px 1px #727272;
 }
 
 .header-modal {
@@ -78,11 +85,16 @@
   border-top-right-radius: 15px;
 }
 
+.box-modal h2 {
+  color: var(--corPrincipal);
+  margin-left: 40px;
+}
+
 .header-modal button {
-  position: absolute;
+  margin-left: 15px;
   right: 10px;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border: none;
   background-color: rgb(135, 33, 33);
   border-radius: 10px;
@@ -98,14 +110,18 @@
   background-color: rgb(104, 22, 22);
 }
 
-.box-modal input {
+.modal-input,
+.modal-select {
+  box-sizing: content-box;
   height: 35px;
   width: 354px;
   border: none;
   border-radius: 10px;
   margin-top: 20px;
+  padding-left: 10px;
 }
 
+/* Botão concluir pagamento*/
 .btn-modalPag {
   background: rgb(0, 105, 94);
   height: 35px;
@@ -113,4 +129,74 @@
   border: none;
   border-radius: 10px;
   color: white;
+}
+
+.btn-modalPag:hover {
+  background: rgb(0, 182, 164);
+  cursor: pointer;
+  box-shadow: -1px 1px 3px 1px;
+}
+
+.btn-modalPag:active {
+  background: rgb(0, 54, 49);
+  cursor: pointer;
+  color: rgb(202, 202, 202);
+  box-shadow: none;
+}
+
+.requiredField {
+  color: rgb(255 81 81);
+  position: absolute;
+  margin-top: 63px;
+}
+/* ================================================================== */
+/* Modal final */
+/* ================================================================== */
+
+#modalFinal {
+  width: 500px;
+  height: 193px;
+  margin: auto;
+  border-radius: 32px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(rgb(255, 255, 255), rgb(197, 197, 197));
+  padding: 0 !important;
+}
+
+.modalFinal {
+  color: var(--corPrincipal);
+  border-radius: 32px;
+  width: 500px;
+  height: 193px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(rgb(255, 255, 255), rgb(197, 197, 197));
+}
+
+/* botão ok */
+.btn-finalOk {
+  background: rgb(0, 105, 94);
+  height: 35px;
+  width: 354px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+}
+
+.btn-finalOk:hover {
+  background: rgb(0, 182, 164);
+  cursor: pointer;
+  box-shadow: -1px 1px 3px 1px;
+}
+
+.btn-finalOk:active {
+  background: rgb(0, 54, 49);
+  cursor: pointer;
+  color: rgb(202, 202, 202);
+  box-shadow: none;
 }
