@@ -12,7 +12,7 @@ function Rotas() {
       <div className="container">
         <Routes>
           <Route path="/Projeto-Individual-React" exact element={<Home />} />
-          <Route path="/users" element={<Users />} />
+          <Route path="/Projeto-Individual-React/users" element={<Users />} />
         </Routes>
       </div>
     </Router>
