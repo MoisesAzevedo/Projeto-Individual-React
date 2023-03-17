@@ -2,33 +2,27 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "./Users.css";
 import axios from "axios";
-import "/Users/Moise/OneDrive/Área de Trabalho/asd/Projeto-Individual-React/src/App.css";
+import "../../App.css";
 import Modal from "react-modal";
 import { NumericFormat } from "react-number-format";
-import ModalFinal from "../ModalFinal";
 
 const Users = () => {
   /* =========================================================================================== */
   //........................................ Modal
   /* =========================================================================================== */
-  const [modalIsOpen, setIsOpen] = useState(false); //Verifica se o modal está aberto
+
   const [validInput, setValidInput] = useState("");
   const [requiredField, setRequiredField] = useState("");
   const [validSelect, setValidSelect] = useState("");
-  const [modalFinal, setModalFinal] = useState(false);
-
-  function openModal(i) {
-    console.log("openModal " + i);
-    localStorage.setItem("name", JSON.stringify(i));
-
-    //seta o modal para true
-    console.log("Testando Open");
-    setIsOpen(true);
-  }
+  const [userArray, setUserArray] = useState ({})
+  const [userArrayFinal, setUserArrayFinal] = useState (false)
 
   function closeModal() {
+    //pega o valor do userArray e joga para userArrayFinal
+    setUserArrayFinal(userArray)
+
     //seta o modal para false
-    setIsOpen(false);
+    setUserArray(false);
     console.log("teste close");
 
     setValidInput(null);
@@ -44,10 +38,11 @@ const Users = () => {
     console.log(validSelect);
   }
 
-  function testModal(e) {
+  //Validando o número do cartão
+/*   function testNumber(e) {
     console.log("TEST MODAL");
 
-    //testando o campo NumericFormat
+    
     if (validInput == 0 || validInput == null) {
       setRequiredField("Digite o valor!");
     } else {
@@ -65,6 +60,47 @@ const Users = () => {
     }
     //------------------------------
   }
+ */
+
+  const handeSubmit = (e) => {
+    e.preventeDefault()
+    axios
+      .post ('https://run.mocky.io/v3/533cd5d7-63d3-4488-bf8d-4bb8c751c989', {
+        card_number: selectChange.card_number,
+        cvv: selectChange.cvv,
+        expiry_date: selectChange.expiry_date,
+      })
+  }
+
+  const addPost = data => axios.post("https://run.mocky.io/v3/533cd5d7-63d3-4488-bf8d-4bb8c751c989", data)
+  .then(()=>{
+   console.log("post correto")
+  })
+  .catch(() => {
+    console.log("post errado")
+  } ) 
+
+  let card =
+  // valid card
+  {
+    card_number: "1111111111111111",
+    cvv: "789",
+    expiry_date: "01/18",
+  };
+
+let invalidCard =
+  // valid card
+  {
+    card_number: "4111111111111234",
+    cvv: "123",
+    expiry_date: "01/20",
+  };
+
+  const validationCard = () => {
+    if (selectChange == invalidCard) {
+      setRequiredField("Invalid card!");
+    }
+  };
 
   //Close modal final
   function modalFinalClose() {
@@ -86,12 +122,13 @@ const Users = () => {
         console.log(error);
       });
   }, []);
+  
+  const [modalFinal, setModalFinal] = useState(false);
 
-  const nameUser0 = localStorage.getItem("name");
-  const nameUser = JSON.parse(nameUser0);
 
   return (
     <>
+    
       {usuariosApi.map((usuario) => {
         return (
           <div className="userContainer">
@@ -107,7 +144,7 @@ const Users = () => {
             </div>
 
             <div id="pagar">
-              <button className="botao" onClick={() => openModal(usuario.name)}>
+              <button className="botao" onClick={() => setUserArray(usuario)}>
                 Pagar
               </button>
             </div>
@@ -115,8 +152,10 @@ const Users = () => {
         );
       })}
 
+      {/* {isModalVisible ? <ModalConst /> : null} */}
+
       <Modal
-        isOpen={modalIsOpen}
+        isOpen={userArray.name}
         contentLabel="example M<odal"
         overlayclassName="modal-overlay"
         className="modal-content"
@@ -124,9 +163,9 @@ const Users = () => {
         <div className="box-modal">
           <div className="header-modal">
             <header>
-              <h2>Pagamento para {nameUser}</h2>
+              <h2>Pagamento para {userArray.name}</h2>
             </header>
-            <button onClick={closeModal}>✖</button>
+            <button onClick={() => setUserArray(false)}>✖</button>
           </div>
           <br></br>
           <p className="requiredField">{requiredField}</p>
@@ -135,7 +174,8 @@ const Users = () => {
             className="modal-input"
             type="text"
             placeholder="R$ 0,00"
-            thousandSeparator={true}
+            decimalSeparator=","
+            thousandSeparator={"."}
             prefix={"R$ "}
             inputMode="numeric"
             value={validInput}
@@ -145,8 +185,14 @@ const Users = () => {
             <option value="Selecione" disabled selected>
               Selecione os 04 últimos digitos do cartão
             </option>
-            <option value="0123">Cartão com final 0123</option>
-            <option value="2123">Cartão com final 2123</option>
+
+            <option value="1111">
+              {card.card_number.slice(-4)}
+            </option>
+
+            <option value="1234">
+              {invalidCard.card_number.slice(-4)}
+            </option>
           </select>
 
           <br />
@@ -154,17 +200,20 @@ const Users = () => {
           <button
             className="btn-modalPag"
             type="submit"
-            onClick={() => testModal()}
+            onClick={() => {
+              handeSubmit();
+              validationCard();
+            }}
           >
             Concluir pagamento
           </button>
         </div>
       </Modal>
 
-      <Modal isOpen={modalFinal} id="modalFinal">
+      <Modal isOpen={userArrayFinal} id="modalFinal">
         <div className="modalFinal">
-          <h2>Pagamento enviado para {nameUser}</h2>
-          <button className="btn-finalOk" onClick={modalFinalClose}>
+          <h2>Pagamento enviado para {userArrayFinal.name}</h2>
+          <button className="btn-finalOk" onClick={() => setUserArrayFinal(false)}>
             Ok
           </button>
         </div>

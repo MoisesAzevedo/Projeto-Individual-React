@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import '/Users/Moise/OneDrive/Área de Trabalho/asd/Projeto-Individual-React/src/App.css';
+import '../../App.css';
 import Botao from '../Botao'
 /* import { Link } from "react-router-dom";
  */
