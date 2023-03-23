@@ -36,47 +36,13 @@ const Users = () => {
   function selectChange(e) {
     setValidSelect(e.target.value);
     console.log(validSelect);
-  }
-
-  //Validando o número do cartão
-/*   function testNumber(e) {
-    console.log("TEST MODAL");
-
-    
-    if (validInput == 0 || validInput == null) {
-      setRequiredField("Digite o valor!");
-    } else {
-      setRequiredField("");
-
-      if (validSelect != 2123) {
-        setRequiredField("Cartão inválido");
-      } else {
-        console.log(validInput);
-        setRequiredField("");
-        setValidSelect("");
-        closeModal();
-        setModalFinal(true);
-      }
-    }
-    //------------------------------
-  }
- */
-
-  const handeSubmit = (e) => {
-    e.preventeDefault()
-    axios
-      .post ('https://run.mocky.io/v3/533cd5d7-63d3-4488-bf8d-4bb8c751c989', {
-        card_number: selectChange.card_number,
-        cvv: selectChange.cvv,
-        expiry_date: selectChange.expiry_date,
-      })
-  }
+  }  
 
   const addPost = data => axios.post("https://run.mocky.io/v3/533cd5d7-63d3-4488-bf8d-4bb8c751c989", data)
-  .then(()=>{
+  .then((response)=>{
    console.log("post correto")
   })
-  .catch(() => {
+  .catch((error) => {
     console.log("post errado")
   } ) 
 
@@ -97,15 +63,22 @@ let invalidCard =
   };
 
   const validationCard = () => {
-    if (selectChange == invalidCard) {
-      setRequiredField("Invalid card!");
+    if (validInput == 0 || validInput == null) {
+      setRequiredField("Digite o valor!");
+    } else {
+      setRequiredField("");
+  
+      if (validSelect != card.card_number) {
+        setRequiredField("Cartão inválido");
+      } else {
+        console.log(validInput);
+        setRequiredField("");
+        setValidSelect("");
+        closeModal();
+        setModalFinal(true);
+      }
     }
   };
-
-  //Close modal final
-  function modalFinalClose() {
-    setModalFinal(false);
-  }
 
   /* =========================================================================================== */
 
@@ -186,11 +159,11 @@ let invalidCard =
               Selecione os 04 últimos digitos do cartão
             </option>
 
-            <option value="1111">
+            <option value={card.card_number}>
               {card.card_number.slice(-4)}
             </option>
 
-            <option value="1234">
+            <option value={invalidCard.card_number}>
               {invalidCard.card_number.slice(-4)}
             </option>
           </select>
@@ -201,7 +174,7 @@ let invalidCard =
             className="btn-modalPag"
             type="submit"
             onClick={() => {
-              handeSubmit();
+              addPost();
               validationCard();
             }}
           >
